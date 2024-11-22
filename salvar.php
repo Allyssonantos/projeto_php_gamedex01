@@ -19,14 +19,19 @@
         <button type="submit">Cadastrar</button>
     </form>
     <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $nomejogo = $_POST["nomejogo"];
         $genero = $_POST["genero"];
         $desenvolvedor = $_POST["desenvolvedor"];
         $ano = $_POST["ano"];
         
-        $sql = "INSERT INTO jogos (nomejogo, genero, desenvolvedor, ano) VALUES ('$nomejogo', '$genero', '$desenvolvedor', $ano)";
+        $sql = "INSERT INTO jogos (nome_jogo, genero, desenvolvedor, ano) VALUES ('$nomejogo', '$genero', '$desenvolvedor', $ano)";
 
+        if ($conn->query($sql)){
+            echo "Jogo cadrastrado com sucesso!";
+        } else{
+            echo "Erro: " . $conn->error;
+        }
     }
     ?>
     </body>
